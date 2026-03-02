@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.*;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 public final class MissionReader {
@@ -29,22 +30,27 @@ public final class MissionReader {
                         (int) (word.getBoundingBox().getHeight() / wordScale)
                 ))).toList();
 
-        List<String> missionLines = new ArrayList<>();
         Map<boolean[][], Character> charBitmaps = atlas.entrySet().stream().collect(Collectors.toMap(
                 entry -> TextImageUtils.getCharacterBitmap(entry.getValue()), Map.Entry::getKey));
 
-        for (Word word : words) {
-            StringBuilder lineBuilder = new StringBuilder();
-            int currentX = (int) word.getBoundingBox().getX();
+        List<CompletableFuture<String>> futures = words.stream()
+                .map(word -> CompletableFuture.supplyAsync(() -> processWord(image, charBitmaps, word)))
+                .toList();
 
-            while (currentX <= word.getBoundingBox().getX() + word.getBoundingBox().getWidth()) {
-                currentX += matchCharacterBitmaps(image, charBitmaps, word, lineBuilder, currentX);
-            }
+        return futures.stream()
+                .map(CompletableFuture::join)
+                .collect(Collectors.toList());
+    }
 
-            missionLines.add(lineBuilder.toString().trim());
+    private static String processWord(BufferedImage image, Map<boolean[][], Character> charBitmaps, Word word) {
+        StringBuilder lineBuilder = new StringBuilder();
+        int currentX = (int) word.getBoundingBox().getX();
+
+        while (currentX <= word.getBoundingBox().getX() + word.getBoundingBox().getWidth()) {
+            currentX += matchCharacterBitmaps(image, charBitmaps, word, lineBuilder, currentX);
         }
 
-        return missionLines;
+        return lineBuilder.toString().trim();
     }
 
     public static int matchCharacterBitmaps(BufferedImage image, Map<boolean[][], Character> charBitmaps, Word word, StringBuilder lineBuilder, int currentX) {

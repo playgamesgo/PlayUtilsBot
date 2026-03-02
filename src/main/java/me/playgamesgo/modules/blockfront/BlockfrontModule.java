@@ -66,8 +66,10 @@ public final class BlockfrontModule extends ListenerAdapter {
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         final MessageChannelUnion channel = event.getChannel();
+        final Message message = event.getMessage();
+
         if (channel.getId().equals(config.getChannelId())) {
-            final List<Message.Attachment> attachments = event.getMessage().getAttachments();
+            final List<Message.Attachment> attachments = message.getAttachments();
             if (attachments.isEmpty()) return;
 
             final Message.Attachment attachment = attachments.getFirst();
@@ -132,7 +134,7 @@ public final class BlockfrontModule extends ListenerAdapter {
                         embeds.add(builder.build());
                     });
 
-                    channel.sendMessageEmbeds(embeds).queue();
+                    message.replyEmbeds(embeds).queue();
                 } catch (IOException | InterruptedException e) {
                     e.printStackTrace(System.err);
                 }
