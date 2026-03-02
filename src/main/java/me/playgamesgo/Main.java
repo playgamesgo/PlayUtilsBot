@@ -17,6 +17,9 @@ public final class Main {
     @Getter private static JDA jda;
 
     static void main() throws InterruptedException {
+        // Load bytedeco's leptonica first so JNA finds it before the system lib
+        org.bytedeco.leptonica.global.leptonica.pixCreate(1, 1, 8).close();
+
         Config config = ConfigManager.create(Config.class, it -> {
             it.configure(opt -> {
                 opt.configurer(new YamlSnakeYamlConfigurer(), new SerdesCommons(), new CustomSerdes());

@@ -1,0 +1,8 @@
+services:
+  play-bot:
+    image: play-bot:latest
+    restart: always
+    working_dir: /app
+    volumes:
+      - /home/play/bot:/app
+    command: ["java", "-jar", "PlayUtilsBot-1.0-SNAPSHOT-all.jar"]

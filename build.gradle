@@ -26,6 +26,9 @@ dependencies {
 
     implementation "eu.okaeri:okaeri-configs-yaml-snakeyaml:6.1.0-beta.1"
     implementation "eu.okaeri:okaeri-configs-serdes-commons:6.1.0-beta.1"
+
+    implementation 'org.bytedeco:leptonica:1.87.0-1.5.13'
+    implementation 'org.bytedeco:leptonica:1.87.0-1.5.13:linux-x86_64'
 }
 
 jar {
@@ -33,5 +36,19 @@ jar {
         attributes(
                 'Main-Class': 'me.playgamesgo.Main'
         )
+    }
+}
+
+afterEvaluate {
+    shadowJar {
+        from(zipTree(project.configurations.runtimeClasspath
+            .resolvedConfiguration.resolvedArtifacts
+            .find { it.name == 'leptonica' && it.classifier == 'linux-x86_64' }?.file)) {
+            include "org/bytedeco/leptonica/linux-x86_64/libleptonica.so.6"
+            eachFile { FileCopyDetails fcd ->
+                fcd.relativePath = new RelativePath(true, "linux-x86-64", "libleptonica.so")
+            }
+            includeEmptyDirs = false
+        }
     }
 }

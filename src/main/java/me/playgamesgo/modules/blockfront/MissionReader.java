@@ -9,16 +9,30 @@ import java.awt.image.BufferedImage;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 
 public final class MissionReader {
     public static List<Word> readUncompletedLines(BufferedImage image) {
-        Tesseract tesseract = new Tesseract();
-        tesseract.setDatapath(BlockfrontModule.getConfig().getTesseractPath());
-        tesseract.setLanguage(BlockfrontModule.getConfig().getTesseractLanguage());
+        CompletableFuture<List<Word>> future = CompletableFuture.supplyAsync(() -> {
+            Tesseract tesseract = new Tesseract();
+            tesseract.setDatapath(BlockfrontModule.getConfig().getTesseractPath());
+            tesseract.setLanguage(BlockfrontModule.getConfig().getTesseractLanguage());
+            return tesseract.getWords(image, ITessAPI.TessPageIteratorLevel.RIL_TEXTLINE);
+        });
 
-        List<Word> lineResults = tesseract.getWords(image, ITessAPI.TessPageIteratorLevel.RIL_TEXTLINE);
-        return lineResults.stream().filter(word -> word.getText().startsWith("*")).toList();
+        try {
+            List<Word> lineResults = future.get(30, TimeUnit.SECONDS);
+            return lineResults.stream().filter(word -> word.getText().startsWith("*")).toList();
+        } catch (TimeoutException e) {
+            System.err.println("[MissionReader] Tesseract timed out after 30s");
+            future.cancel(true);
+            return Collections.emptyList();
+        } catch (Exception e) {
+            System.err.println("[MissionReader] Tesseract error: " + e.getMessage());
+            return Collections.emptyList();
+        }
     }
 
     public static List<String> readMission(BufferedImage image, List<Word> words, int wordScale, Map<Character, BufferedImage> atlas) {
