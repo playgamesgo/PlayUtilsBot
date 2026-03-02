@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.gradleup.shadow' version '9.3.0'
 }
 
 group = 'me.playgamesgo'
@@ -25,4 +26,12 @@ dependencies {
 
     implementation "eu.okaeri:okaeri-configs-yaml-snakeyaml:6.1.0-beta.1"
     implementation "eu.okaeri:okaeri-configs-serdes-commons:6.1.0-beta.1"
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'me.playgamesgo.Main'
+        )
+    }
 }
