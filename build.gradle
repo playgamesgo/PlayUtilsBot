@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+group = 'me.playgamesgo'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "okaeri"
+        url = "https://repo.okaeri.cloud/releases/"
+    }
+}
+
+dependencies {
+    implementation("net.dv8tion:JDA:6.3.1") {
+        exclude module: 'opus-java'
+    }
+
+    implementation 'net.sourceforge.tess4j:tess4j:5.18.0'
+
+    compileOnly "org.projectlombok:lombok:1.18.42"
+    annotationProcessor "org.projectlombok:lombok:1.18.42"
+
+    implementation "eu.okaeri:okaeri-configs-yaml-snakeyaml:6.1.0-beta.1"
+    implementation "eu.okaeri:okaeri-configs-serdes-commons:6.1.0-beta.1"
+}
