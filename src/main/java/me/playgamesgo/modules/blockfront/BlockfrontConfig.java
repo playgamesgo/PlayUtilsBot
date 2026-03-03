@@ -952,7 +952,7 @@ public final class BlockfrontConfig extends OkaeriConfig {
                 "Most Maps"
         ));
 
-        add(new WeaponInfo("Browning Auto 5",
+        add(new WeaponInfo("Browning Auto-5",
                 Map.of(
                         "Britain", List.of(
                                 Map.entry("Assault", 4),
@@ -1002,6 +1002,17 @@ public final class BlockfrontConfig extends OkaeriConfig {
         ));
 
         add(new WeaponInfo("Type 18",
+                Map.of(
+                        "Japan", List.of(
+                                Map.entry("Assault", 2),
+                                Map.entry("Support", 4),
+                                Map.entry("Medic", 3),
+                                Map.entry("Commander", 4)
+                        )
+                )
+        ));
+
+        add(new WeaponInfo("Type 18 (Shotgun Converted)",
                 Map.of(
                         "Japan", List.of(
                                 Map.entry("Assault", 2),

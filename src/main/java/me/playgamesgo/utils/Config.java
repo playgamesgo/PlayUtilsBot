@@ -7,4 +7,5 @@ import lombok.Setter;
 @Getter @Setter
 public final class Config extends OkaeriConfig {
     private String botToken = "TOKEN";
+    private String commandGuilds = "GUILD_ID";
 }

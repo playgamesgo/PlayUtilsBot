@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
 
 public final class BlockfrontModule extends ListenerAdapter {
     @Getter private static BlockfrontConfig config;
-    private static final Pattern TRACKER_PATTER = Pattern.compile("\\((\\d{1,2})/(\\d{1,2})\\)");
+    private static final Pattern TRACKER_PATTER = Pattern.compile("\\((\\d{1,2})/(\\d{1,2})\\)?");
     private final Map<Character, BufferedImage> atlas;
     private final HttpClient httpClient = HttpClient.newHttpClient();
 

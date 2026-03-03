@@ -12,6 +12,10 @@ repositories {
         name = "okaeri"
         url = "https://repo.okaeri.cloud/releases/"
     }
+    maven {
+        name = "panda"
+        url = "https://repo.panda-lang.org/releases"
+    }
 }
 
 dependencies {
@@ -29,6 +33,8 @@ dependencies {
 
     implementation 'org.bytedeco:leptonica:1.87.0-1.5.13'
     implementation 'org.bytedeco:leptonica:1.87.0-1.5.13:linux-x86_64'
+
+    implementation "dev.rollczi:litecommands-jda:3.10.9"
 }
 
 jar {
@@ -37,6 +43,10 @@ jar {
                 'Main-Class': 'me.playgamesgo.Main'
         )
     }
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs.add("-parameters")
 }
 
 afterEvaluate {
