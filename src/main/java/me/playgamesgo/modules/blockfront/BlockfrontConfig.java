@@ -788,7 +788,7 @@ public final class BlockfrontConfig extends OkaeriConfig {
                 )
         ));
 
-        add(new WeaponInfo("SVT-40",
+        add(new WeaponInfo("Tokarev SVT-40",
                 Map.of(
                         "Poland", List.of(
                                 Map.entry("Lt Rifle", 3),
