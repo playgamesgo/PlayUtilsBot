@@ -136,7 +136,7 @@ public final class BlockfrontConfig extends OkaeriConfig {
                 ))
         ));
 
-        add(new WeaponInfo("MP-3008",
+        add(new WeaponInfo("MP 3008",
                 Map.of("Germany", List.of(
                         Map.entry("Assault", 3)
                 ))
@@ -820,7 +820,7 @@ public final class BlockfrontConfig extends OkaeriConfig {
                 )
         ));
 
-        add(new WeaponInfo("Winchester 1895",
+        add(new WeaponInfo("Winchester Model 1895",
                 Map.of(
                         "United States", List.of(
                                 Map.entry("Rifleman", 2),
@@ -1023,7 +1023,7 @@ public final class BlockfrontConfig extends OkaeriConfig {
                 )
         ));
 
-        add(new WeaponInfo("Winchester 1912",
+        add(new WeaponInfo("Winchester Model 1912",
                 Map.of(
                         "Britain", List.of(
                                 Map.entry("Assault", 2),
