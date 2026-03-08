@@ -1294,7 +1294,7 @@ public final class BlockfrontConfig extends OkaeriConfig {
                 )
         )));
 
-        add(new WeaponInfo("Modele 1892 Revolver", Map.of(
+        add(new WeaponInfo("Modele 1892", Map.of(
                 "France", List.of(
                         Map.entry("Rifleman", 4),
                         Map.entry("Lt Rifle", 4),
