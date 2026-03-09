@@ -246,7 +246,7 @@ public final class BlockfrontConfig extends OkaeriConfig {
                 )
         ));
 
-        add(new WeaponInfo("Breda SAFAT",
+        add(new WeaponInfo("Breda-SAFAT",
                 Map.of(
                         "Italy", List.of(
                                 Map.entry("Gunner", 3)
@@ -669,7 +669,7 @@ public final class BlockfrontConfig extends OkaeriConfig {
         add(new WeaponInfo("M1 Carbine",
                 Map.of(
                         "Britain", List.of(
-                                Map.entry("Lt Rifleman", 3)
+                                Map.entry("Lt Rifle", 3)
                         ),
                         "United States", List.of(
                                 Map.entry("Lt Rifle", 2),
@@ -685,7 +685,7 @@ public final class BlockfrontConfig extends OkaeriConfig {
         add(new WeaponInfo("M1 Garand",
                 Map.of(
                         "Britain", List.of(
-                                Map.entry("Lt Rifleman", 4)
+                                Map.entry("Lt Rifle", 4)
                         ),
                         "France", List.of(
                                 Map.entry("Lt Rifle", 2),
@@ -693,7 +693,7 @@ public final class BlockfrontConfig extends OkaeriConfig {
                                 Map.entry("Sniper", 2)
                         ),
                         "Italy", List.of(
-                                Map.entry("Lt Rifleman", 4)
+                                Map.entry("Lt Rifle", 4)
                         ),
                         "United States", List.of(
                                 Map.entry("Lt Rifle", 1),
