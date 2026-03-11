@@ -588,7 +588,7 @@ public final class BlockfrontConfig extends OkaeriConfig {
                 )
         ));
 
-        add(new WeaponInfo("Kar 98k",
+        add(new WeaponInfo("Kar 98K",
                 Map.of(
                         "France", List.of(
                                 Map.entry("Rifleman", 3)
