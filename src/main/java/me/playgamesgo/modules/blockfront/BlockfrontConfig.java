@@ -510,7 +510,7 @@ public final class BlockfrontConfig extends OkaeriConfig {
                 )
         ));
 
-        add(new WeaponInfo("Carcano M91 TS Carbine",
+        add(new WeaponInfo("Carcano M19 TS Carbine",
                 Map.of(
                         "Italy", List.of(
                                 Map.entry("Rifleman", 2),
@@ -618,7 +618,7 @@ public final class BlockfrontConfig extends OkaeriConfig {
                 )
         ));
 
-        add(new WeaponInfo("Kbk Wz. 29",
+        add(new WeaponInfo("Kbk wz.29",
                 Map.of(
                         "Poland", List.of(
                                 Map.entry("Rifleman", 1),
